@@ -1,0 +1,14 @@
+%header.w-full.px-2.sm:px-6.h-16.border-b.flex.justify-between.items-center{:class => "border-slate-900/10 dark:border-slate-300/10"}
+  #logo
+    %a.text-2xl.font-bold.dark:text-green-500.text-green-800.no-underline{:href => "/"}
+      %span Troop Manager
+  - if current_user.present?
+    .flex.justify-end.items-center.gap-4.text-gray-600
+      - button = capture do
+        = render 'icons/ellipsis_vertical', class: 'w-6 h-6 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-300'
+      = render 'shared/dropdown', button: button do
+        = link_to "Sign Out", destroy_user_session_path, 'data-turbo-method': :delete
+  - else
+    .flex.justify-end.items-center.gap-4
+      = link_to "Sign In", new_user_session_path, class: "btn btn-outline-yellow"
+      = link_to "Sign Up", new_user_registration_path

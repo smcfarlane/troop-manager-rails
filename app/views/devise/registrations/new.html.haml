@@ -1,0 +1,26 @@
+.flex.justify-center
+  .flex.flex-col.gap-8(class="w-3/5")
+    %p.text-2xl Sign up
+    = form_for resource, as: resource_name, url: registration_path(resource_name), html: { class: 'flex flex-col gap-6' } do |f|
+      = render "devise/shared/error_messages", resource: resource
+      .relative
+        = f.label :name, 'Name', class: "basic-label"
+        = f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "Name", class: "basic-input"
+      .relative
+        = f.label :email, 'Email', class: "basic-label"
+        = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "email", class: "basic-input"
+      .flex.flex-col.gap-1
+        .relative
+          = f.label :password, 'Password', class: "basic-label"
+        = f.password_field :password, autocomplete: "new-password", placeholder: "Password", class: "basic-input"
+        - if @minimum_password_length
+          .flex.justify-end
+            %em (#{@minimum_password_length} characters minimum)
+      .relative
+        = f.label :password_confirmation, 'Password Confirmation', class: "basic-label"
+        = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Password Confirmation", class: "basic-input"
+      .flex.justify-end
+        = f.submit "Sign up", class: 'btn btn-primary'
+
+    .flex.flex-col.gap-4
+      = render "devise/shared/links"

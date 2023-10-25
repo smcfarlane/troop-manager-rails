@@ -1,0 +1,22 @@
+!!!
+%html
+  %head
+    %meta(content="text/html; charset=UTF-8" http-equiv="Content-Type")/
+    %title Troop Manager
+    %meta(content="width=device-width,initial-scale=1" name="viewport")/
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload"
+    = stylesheet_link_tag "application", "data-turbo-track": "reload"
+    = javascript_importmap_tags
+  %body.dark:bg-stone-700.dark:text-gray-100{"hx-boost" => "true"}
+    = render "layouts/navbar"
+    .flex.justify-center.mt-8.mx-4.sm:mx-8.md:mx-0
+      %main#main.w-full{ class: "md:w-11/12 lg:w-10/12 xl:w-8/12" }
+        - if flash.any?
+          .p-4
+            - if flash['notice']
+              .alert.alert-success{:role => "alert"}= flash['notice']
+            - if flash['error']
+              .alert.alert-danger{:role => "alert"}= flash['error']
+        != yield
