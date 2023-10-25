@@ -7,4 +7,10 @@ Rails.application.routes.draw do
   root 'home#index'
   get 'current_troop', to: 'troops#current', as: :current_troop
   get 'not_a_member', to: 'troops#not_a_member', as: :not_a_member
+
+  namespace :admin do
+    get 'dashboard', to: 'dashboard#index', as: :dashboard
+    resources :users
+    resources :troops
+  end
 end

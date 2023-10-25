@@ -7,6 +7,6 @@
         = local_assigns[:label].presence || 'Options'
         %svg.-mr-1.h-5.w-5.text-gray-400(aria-hidden="true" fill="currentColor" viewbox="0 0 20 20")
           %path(clip-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" fill-rule="evenodd")
-  .absolute.right-0.z-10.mt-2.w-56.origin-top-right.rounded-md.bg-white.shadow-lg.ring-1.ring-black.ring-opacity-5.focus:outline-none.hidden(aria-labelledby="menu-button" aria-orientation="vertical" role="menu" tabindex="-1" data-toggle-target="toggleable" data-action="click->toggle#hide")
-    .p-2(role="none")
+  .absolute.right-0.z-10.mt-2.w-56.origin-top-right.rounded-md.bg-white.dark:bg-stone-300.text-stone-800.shadow-lg.ring-1.ring-black.ring-opacity-5.focus:outline-none.hidden(aria-labelledby="menu-button" aria-orientation="vertical" role="menu" tabindex="-1" data-toggle-target="toggleable" data-action="click->toggle#hide")
+    .flex.flex-col(role="none")
       = yield

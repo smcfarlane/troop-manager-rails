@@ -3,12 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = [ "toggleable" ]
 
-  connect() {
-    console.log("Hello, Stimulus!", this.element)
-  }
-
   toggle() {
-    console.log("toggle")
     this.toggleableTarget.classList.toggle("hidden")
   }
 
@@ -17,7 +12,6 @@ export default class extends Controller {
   }
 
   hide() {
-    console.log("hide")
     this.toggleableTarget.classList.add("hidden")
   }
 }

@@ -2,12 +2,16 @@
   #logo
     %a.text-2xl.font-bold.dark:text-green-500.text-green-800.no-underline{:href => "/"}
       %span Troop Manager
+    - if request.path.include?('admin')
+      %span(class="!text-md text-white") | Admin
   - if current_user.present?
     .flex.justify-end.items-center.gap-4.text-gray-600
       - button = capture do
         = render 'icons/ellipsis_vertical', class: 'w-6 h-6 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-300'
       = render 'shared/dropdown', button: button do
-        = link_to "Sign Out", destroy_user_session_path, 'data-turbo-method': :delete
+        - if current_user.admin?
+          = link_to "Admin", admin_dashboard_path, class: 'p-2 hover:bg-gray-100 dark:hover:bg-stone-400 border-b border-gray-800 rounded-t'
+        = link_to "Sign Out", destroy_user_session_path, 'data-turbo-method': :delete, class: 'p-2 hover:bg-gray-100 dark:hover:bg-stone-400 border-b border-gray-800 rounded-b'
   - else
     .flex.justify-end.items-center.gap-4
       = link_to "Sign In", new_user_session_path, class: "btn btn-outline-yellow"
