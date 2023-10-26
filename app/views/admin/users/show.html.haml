@@ -1,0 +1,9 @@
+.flex.flex-col.gap-4
+  .flex.justify-between.items-end.pb-4
+    .flex.items-end.gap-2
+      %h1.text-2xl #{@user.name}
+      %span.text-md.text-gray-400= @user.email
+    %div
+      = link_to "Back", admin_users_path, class: "btn btn-default mb-2"
+
+  = turbo_frame_tag "memberships", src: admin_memberships_path(user_id: @user.id), class: "w-3/5 pl-4"

@@ -12,5 +12,6 @@ Rails.application.routes.draw do
     get 'dashboard', to: 'dashboard#index', as: :dashboard
     resources :users
     resources :troops
+    resources :memberships, only: [:index, :show, :new, :create, :destroy]
   end
 end

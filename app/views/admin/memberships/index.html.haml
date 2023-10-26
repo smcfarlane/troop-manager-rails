@@ -1,0 +1,2 @@
+= turbo_frame_tag "memberships" do
+  = render partial: 'membership', collection: @memberships, locals: { source_type: @source.class.name, source: @source }
