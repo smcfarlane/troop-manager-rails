@@ -1,5 +1,5 @@
 .flex.justify-between.border-b.border-gray-300.p-4{ id: dom_id(troop), class: troop_counter == 0 ? "border-t" : "" }
-  = link_to admin_troop_path(troop), class: "flex justify-start items-end gap-2" do
+  = link_to admin_troop_path(troop), class: "flex justify-start items-end gap-2 hover:text-emerald-500" do
     %p.text-xl.m-0= troop.name
     %p.text-sm{ class: "pb-0.5" } ##{troop.number}
     %p.text-sm.text-gray-700.px-2.rounded.mb-1.ml-6{ class: troop_state(troop.state) }= troop.state.capitalize

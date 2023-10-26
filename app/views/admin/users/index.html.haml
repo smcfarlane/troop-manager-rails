@@ -1,1 +1,8 @@
-%p.text-3xl Users
+.flex.flex-col.gap-4
+  .flex.justify-between.items-end.pb-4
+    %h1.text-2xl Users
+    %div
+      = link_to "New User", new_admin_user_path, class: "btn btn-new mb-2"
+
+  #users.px-8
+    = render partial: 'user', collection: @users

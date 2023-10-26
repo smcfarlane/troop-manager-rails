@@ -1,0 +1,26 @@
+= form_for [:admin, user], html: { class: 'flex flex-col gap-4' } do |f|
+  .relative
+    = f.text_field :name, autofocus: true, placeholder: "Name", class: "basic-input peer"
+    = f.label :name, class: "basic-label scale-90 peer-placeholder-shown:scale-100 peer-focus:scale-90"
+    - if f.object.errors[:name].any?
+      .flex.justify-end
+        %p.text-red-500= f.object.errors[:name].first
+  .relative
+    = f.email_field :email, placeholder: "Email", class: "basic-input peer"
+    = f.label :email, class: "basic-label scale-90 peer-placeholder-shown:scale-100 peer-focus:scale-90"
+    - if f.object.errors[:email].any?
+      .flex.justify-end
+        %p.text-red-500= f.object.errors[:email].first
+  - if f.object.new_record?
+    .relative
+      = f.password_field :password, placeholder: "Number", class: "basic-input peer"
+      = f.label :password, class: "basic-label scale-90 peer-placeholder-shown:scale-100 peer-focus:scale-90"
+      - if f.object.errors[:password].any?
+        .flex.justify-end
+          %p.text-red-500= f.object.errors[:password].first
+  .relative
+    = f.label :admin do
+      = f.check_box :admin, class: 'text-emerald-500 focus:ring-emerald-500'
+      %span.pl-2 Is Admin?
+  .flex.justify-end
+    = f.submit "Create", class: "btn btn-primary"

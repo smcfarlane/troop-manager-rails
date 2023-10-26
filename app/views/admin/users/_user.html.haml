@@ -1,0 +1,14 @@
+.flex.justify-between.border-b.border-gray-300.p-4{ id: dom_id(user), class: user_counter == 0 ? "border-t" : "" }
+  = link_to admin_user_path(user), class: "flex justify-start items-end gap-2 hover:text-emerald-500" do
+    %p.text-xl.m-0= user.name
+    %p.text-sm{ class: "pb-0.5" }= user.email
+    .pl-6.mb-1.flex.text-white.text-sm
+      - if user.respond_to?(:troop_name) && user.troop_name.present?
+        %p.px-2.rounded.bg-emerald-700 Current Troop: #{user.troop_name}
+      - if user.admin?
+        %p.px-2.rounded.bg-red-700 Admin
+
+  = render 'shared/dropdown', label: "Actions" do
+    = link_to "Edit", edit_admin_user_path(user), class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-t-md", role: "menuitem"
+    = link_to "Delete", admin_user_path(user), data: { 'turbo-confirm': "Are you sure?", 'turbo-method': :delete }, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-b-md", role: "menuitem"
+

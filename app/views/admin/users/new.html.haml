@@ -1,0 +1,9 @@
+.flex.flex-col.gap-4
+  .flex.justify-between.items-end.pb-4
+    %h1.text-2xl New User
+    %div
+      = link_to "Back", admin_users_path, class: "btn btn-default mb-2"
+  .flex.justify-center
+    %div{ class: 'w-3/5' }
+      = render 'form', user: @user
+
