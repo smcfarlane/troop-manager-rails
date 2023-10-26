@@ -1,0 +1,22 @@
+= form_for [:admin, troop], html: { class: 'flex flex-col gap-4' } do |f|
+  .relative
+    = f.text_field :name, autofocus: true, placeholder: "Name", class: "basic-input peer"
+    = f.label :name, class: "basic-label scale-90 peer-placeholder-shown:scale-100 peer-focus:scale-90"
+    - if f.object.errors[:name].any?
+      .flex.justify-end
+        %p.text-red-500= f.object.errors[:name].first
+  .relative
+    = f.number_field :number, placeholder: "Number", class: "basic-input peer"
+    = f.label :number, class: "basic-label scale-90 peer-placeholder-shown:scale-100 peer-focus:scale-90"
+    - if f.object.errors[:number].any?
+      .flex.justify-end
+        %p.text-red-500= f.object.errors[:number].first
+  = f.fields_for :address do |af|
+    .relative
+      = af.text_area :address_text, placeholder: "Address", rows: 2, class: "basic-input peer"
+      = af.label :address_text, 'Address', class: "basic-label scale-90 peer-placeholder-shown:scale-100 peer-focus:scale-90"
+      - if af.object.errors[:address_text].any?
+        .flex.justify-end{ class: '-mt-1.5' }
+          %p.text-red-500= af.object.errors[:address_text].first
+  .flex.justify-end
+    = f.submit "Create", class: "btn btn-primary"

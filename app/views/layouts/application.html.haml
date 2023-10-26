@@ -9,7 +9,7 @@
     = stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload"
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_importmap_tags
-  %body.dark:bg-stone-700.dark:text-gray-100{"hx-boost" => "true"}
+  %body.dark:bg-stone-700.dark:text-gray-100
     = render "layouts/navbar"
     .flex.justify-center.mt-8.mx-4.sm:mx-8.md:mx-0
       %main#main.w-full{ class: "md:w-11/12 lg:w-10/12 xl:w-8/12" }
@@ -19,4 +19,4 @@
               .alert.alert-success{:role => "alert"}= flash['notice']
             - if flash['error']
               .alert.alert-danger{:role => "alert"}= flash['error']
-        != yield
+        = content_for?(:content) ? yield(:content) : yield

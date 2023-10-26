@@ -1,0 +1,10 @@
+.flex.justify-between.border-b.border-gray-300.p-4{ id: dom_id(troop), class: troop_counter == 0 ? "border-t" : "" }
+  = link_to admin_troop_path(troop), class: "flex justify-start items-end gap-2" do
+    %p.text-xl.m-0= troop.name
+    %p.text-sm{ class: "pb-0.5" } ##{troop.number}
+    %p.text-sm.text-gray-700.px-2.rounded.mb-1.ml-6{ class: troop_state(troop.state) }= troop.state.capitalize
+
+  = render 'shared/dropdown', label: "Actions" do
+    = link_to "Edit", edit_admin_troop_path(troop), class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-t-md", role: "menuitem"
+    = link_to "Delete", admin_troop_path(troop), data: { 'turbo-confirm': "Are you sure?", 'turbo-method': :delete }, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-b-md", role: "menuitem"
+

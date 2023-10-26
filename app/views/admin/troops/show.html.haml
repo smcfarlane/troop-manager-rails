@@ -1,0 +1,6 @@
+.flex.flex-col.gap-4
+  .flex.justify-between.items-end.pb-4
+    %h1.text-2xl ##{@troop.number} | #{@troop.name}
+    %div
+      = link_to "Back", admin_troops_path, class: "btn btn-default mb-2"
+

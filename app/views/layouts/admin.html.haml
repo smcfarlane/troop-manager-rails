@@ -1,0 +1,15 @@
+- content_for :content do
+  .border-b.border-gray-800.dark:border-gray-200.flex.justify-start.items-end(data-controller="tabs")
+    :ruby
+      tabs = [
+        { name: "Dashboard", path: admin_dashboard_path },
+        { name: "Troops", path: admin_troops_path },
+        { name: "Users", path: admin_users_path },
+      ]
+    - tabs.each do |tab|
+      = link_to tab[:name], tab[:path], class: "base-tab", 'data-tubo-frame': 'admin', 'data-tabs-target': 'tab'
+  .flex.flex-col.pt-4
+    = turbo_frame_tag 'admin' do
+      = yield
+
+= render template: 'layouts/application'

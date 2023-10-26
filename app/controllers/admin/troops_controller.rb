@@ -9,12 +9,13 @@ class Admin::TroopsController < Admin::AdminController
 
   def new
     @troop = Troop.new
+    @troop.build_address
   end
 
   def create
     @troop = Troop.new(troop_params)
     if @troop.save
-      redirect_to admin_troop_path(@troop), notice: "Troop created"
+      redirect_to admin_troop_path(@troop), notice: "Troop created", status: :see_other
     else
       render :new
     end
@@ -32,7 +33,10 @@ class Admin::TroopsController < Admin::AdminController
 
   def destroy
     @troop.destroy
-    redirect_to admin_troops_path, notice: "Troop deleted"
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(@troop) }
+      format.html { redirect_to admin_troops_path, notice: "Troop deleted", status: :see_other }
+    end
   end
 
   protected
@@ -42,6 +46,6 @@ class Admin::TroopsController < Admin::AdminController
     end
 
     def troop_params
-      params.require(:troop).permit(:name, :number, :image, :state, addresses_attributes: [:id, :address_text])
+      params.require(:troop).permit(:name, :number, :image, :state, address_attributes: [:id, :address_text])
     end
 end

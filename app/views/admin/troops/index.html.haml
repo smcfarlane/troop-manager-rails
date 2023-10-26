@@ -1,0 +1,8 @@
+.flex.flex-col.gap-4
+  .flex.justify-between.items-end.pb-4
+    %h1.text-3xl Troops
+    %div
+      = link_to "New Troop", new_admin_troop_path, class: "btn btn-new mb-2"
+
+  #troops.px-8
+    = render partial: 'troop', collection: @troops

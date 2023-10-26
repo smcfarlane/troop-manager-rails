@@ -1,4 +1,4 @@
-class Admin::UserController < Admin::AdminController
+class Admin::UsersController < Admin::AdminController
   before_action :load_user, only: [:show, :edit, :update, :destroy]
 
   def index
