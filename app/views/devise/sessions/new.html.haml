@@ -3,16 +3,18 @@
     %p.text-2xl Sign In
     = form_for resource, as: resource_name, url: session_path(resource_name), html: { class: 'flex flex-col gap-6' } do |f|
       .relative
-        = f.label :email, 'Email', class: "basic-label"
-        = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "email", class: "basic-input"
+        = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "email", class: "basic-input peer"
+        = f.label :email, 'Email', class: "basic-label scale-90 peer-placeholder-shown:scale-100 peer-focus:scale-90"
       .relative
-        = f.label :password, 'Password', class: "basic-label"
-        = f.password_field :password, autocomplete: "new-password", placeholder: "Password", class: "basic-input"
+        = f.password_field :password, autocomplete: "new-password", placeholder: "Password", class: "basic-input peer"
+        = f.label :password, 'Password', class: "basic-label scale-90 peer-placeholder-shown:scale-100 peer-focus:scale-90"
       - if devise_mapping.rememberable?
         = f.label :remember_me do
           = f.check_box :remember_me, class: 'text-emerald-500 focus:ring-emerald-500'
           %span.pl-2 Remember me
+
       .flex.justify-end
-        = f.submit "Log in", class: 'btn btn-primary'
+        = f.submit "Sign In", class: 'btn btn-primary'
+
     .flex.flex-col.gap-1
       = render "devise/shared/links"
