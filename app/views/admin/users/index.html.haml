@@ -6,3 +6,6 @@
 
   #users.px-8
     = render partial: 'user', collection: @users
+
+  .flex.justify-center
+    = render 'shared/pagy_nav', pagy: @pagy

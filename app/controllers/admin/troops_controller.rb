@@ -2,7 +2,7 @@ class Admin::TroopsController < Admin::AdminController
   before_action :load_troop, only: [:show, :edit, :update, :destroy]
 
   def index
-    @troops = Troop.order(created_at: :desc)
+    @pagy, @troops = pagy(Troop.order(created_at: :desc), items: 10)
   end
 
   def show; end

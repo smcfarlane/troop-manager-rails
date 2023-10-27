@@ -1,0 +1,33 @@
+-# This template is i18n-ready: if you don't use i18n, then you can replace the pagy_t
+-# calls with the actual strings ("&lsaquo; Prev", "Next &rsaquo;", "&hellip;").
+
+-# The link variable is set to a proc that returns the link tag.
+-# Usage: link.call( page_number [, text [, extra_attributes_string ]])
+
+- link = pagy_link_proc(pagy)
+
+%nav.pagy_nav.flex.gap-4{:role => "navigation"}
+  :ruby
+    prev_svg = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M18.75 19.5l-7.5-7.5 7.5-7.5m-6 15L5.25 12l7.5-7.5" /></svg>'.html_safe
+    next_svg = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5" /></svg>'.html_safe
+
+  - if pagy.prev
+    %span.page.prev.btn.btn-default!= link.call(pagy.prev, prev_svg, 'aria-label="previous"')
+  - else
+    %span.page.prev.disabled.btn!= prev_svg
+
+  -# - pagy.series.each do |item|       # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
+  -#   - if item.is_a?(Integer)         # page link
+  -#     %span.page
+  -#       != link.call(item)
+  -#
+  -#   - elsif item.is_a?(String)       # current page
+  -#     %span.page.current= item
+  -#
+  -#   - elsif item == :gap             # page gap
+  -#     %span.page.gap!= pagy_t('pagy.nav.gap')
+
+  - if pagy.next
+    %span.page.next.btn.btn-default!= link.call(pagy.next, next_svg, 'aria-label="next"')
+  - else
+    %span.page.next.disabled.btn!= next_svg

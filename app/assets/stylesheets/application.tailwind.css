@@ -27,6 +27,10 @@
     @apply bg-gray-600 hover:bg-gray-500 dark:bg-gray-200 dark:hover:bg-gray-300 dark:text-gray-800;
   }
 
+  .btn.disabled {
+    @apply cursor-not-allowed bg-gray-600 dark:bg-gray-200 dark:text-gray-500;
+  }
+
   /* Inputs */
   .input-wrapper {
     @apply flex items-center space-x-2 rounded-md bg-stone-100 p-2;

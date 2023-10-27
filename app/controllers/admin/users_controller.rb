@@ -2,7 +2,7 @@ class Admin::UsersController < Admin::AdminController
   before_action :load_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @users = User.with_current_troop.order(created_at: :desc)
+    @pagy, @users = pagy(User.with_current_troop.order(created_at: :desc), items: 10)
   end
 
   def show; end

@@ -1,4 +1,6 @@
 class Admin::AdminController < ActionController::Base
+  include Pagy::Backend
+
   before_action :authenticate_user!
   before_action :check_admin
 

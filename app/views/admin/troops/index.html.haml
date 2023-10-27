@@ -6,3 +6,6 @@
 
   #troops.px-8
     = render partial: 'troop', collection: @troops
+
+  .flex.justify-center
+    = render 'shared/pagy_nav', pagy: @pagy

@@ -50,6 +50,7 @@ gem 'bootsnap', require: false
 gem 'devise'
 gem 'devise-argon2'
 gem 'haml'
+gem 'pagy'
 
 group :development, :test do
   gem 'faker'
