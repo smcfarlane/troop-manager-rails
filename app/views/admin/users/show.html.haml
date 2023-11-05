@@ -6,4 +6,13 @@
     %div
       = link_to "Back", admin_users_path, class: "btn btn-default mb-2"
 
-  = turbo_frame_tag "memberships", src: admin_memberships_path(user_id: @user.id), class: "w-3/5 pl-4"
+  .flex.justify-between.items-center
+    %p.text-lg.font-semibold Troops Memberships
+    = link_to "New Membership",
+      new_admin_membership_path(user_id: @user.id),
+      class: "btn btn-new mb-2",
+      'data-turbo-stream': true
+
+  = turbo_frame_tag "memberships",
+    src: admin_memberships_path(user_id: @user.id),
+    class: "w-3/5 pl-4"

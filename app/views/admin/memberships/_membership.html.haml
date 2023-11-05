@@ -5,12 +5,13 @@
       %p.text-xl.m-0= membership.troop_name
       %p.text-sm{ class: "pb-0.5" } ##{membership.troop_number}
     - elsif source_type == "Troop"
-      %p.text-xl.m-0= membership.user_name
-      %p.text-sm{ class: "pb-0.5" }= membership.user_email
-    .pl-6.mb-1.flex.text-white.text-sm
+      .flex.flex-col
+        %p.text-xl.m-0= membership.user_name
+        %p.text-sm{ class: "pb-0.5" }= membership.user_email
+    .pl-6.mb-1.flex.gap-2.text-white.text-sm
+      %p.px-2.rounded.bg-amber-600= membership.role.humanize.titlecase
       - if membership.current?
         %p.px-2.rounded.bg-emerald-700 Current
-
 
   %div
     = link_to "Delete", admin_membership_path(membership), data: { 'turbo-confirm': "Are you sure?", 'turbo-method': :delete }, class: "text-red-500", role: "menuitem"

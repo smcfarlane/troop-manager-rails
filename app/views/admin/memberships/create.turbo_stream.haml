@@ -1,0 +1,13 @@
+- if @membership.valid?
+  = turbo_stream.replace 'new-membership-btn' do
+    = link_to 'New Membership',
+      new_admin_membership_path(**membership_url_params(@source)),
+      id: 'new-membership-btn',
+      class: 'btn btn-new mb-2',
+      'data-turbo-stream': true
+  = turbo_stream.remove 'new-membership-form'
+  = turbo_stream.append 'memberships' do
+    = render 'admin/memberships/membership', membership: @membership, source_type: @source.class.name, source: @source, membership_counter: 1
+- else
+  = turbo_stream.replace 'new-membership-form' do
+    = render 'admin/memberships/form', membership: @membership

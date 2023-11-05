@@ -1,0 +1,25 @@
+= form_for [:admin, membership], html: { id: 'new-membership-form' } do |f|
+  - if membership.errors.any?
+    .flex.flex-col.gap-1.flex-basis-full
+      %p.text-red-500= pluralize(membership.errors.count, "Error")
+      %ul.text-red-500
+        - membership.errors.full_messages.each do |msg|
+          %li= msg
+  .flex.flex-wrap.gap-4.pb-6
+    - if membership.user.present?
+      = hidden_field_tag :user_id, membership.user.id
+      .relative.flex-grow
+        = f.select :troop_id, Troop.pluck(:name, :id), {}, class: "basic-select"
+        = f.label :troop_id, 'Troop', class: "basic-label"
+    - else
+      = hidden_field_tag :troop_id, membership.troop.id
+      .relative.flex-grow
+        = f.select :user_id, User.pluck(:name, :id), {}, class: "basic-select"
+        = f.label :user_id, 'User', class: "basic-label"
+    .relative
+      = f.select :role, Membership.role_options, {}, class: "basic-select"
+      = f.label :role, 'Roles', class: "basic-label"
+    .flex.justify-end.items-center
+      %div
+        = f.submit "Create", class: "btn btn-primary"
+

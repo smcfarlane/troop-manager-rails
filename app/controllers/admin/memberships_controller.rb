@@ -1,5 +1,5 @@
 class Admin::MembershipsController < Admin::AdminController
-  before_action :load_source
+  before_action :load_source, except: [:show, :destroy]
   before_action :load_membership, only: [:show, :destroy]
 
   def index
@@ -13,6 +13,16 @@ class Admin::MembershipsController < Admin::AdminController
   end
 
   def create
+    @membership = @source.memberships.new(membership_params)
+    respond_to do |format|
+      if @membership.save
+        format.turbo_stream
+        format.html { redirect_to admin_user_path(@user), notice: 'Membership was successfully created.', status: :see_other }
+      else
+        format.turbo_stream
+        format.html { render :new }
+      end
+    end
   end
 
   def destroy
@@ -46,10 +56,10 @@ class Admin::MembershipsController < Admin::AdminController
     end
 
     def load_membership
-      @membership = @user.memberships.find(params[:id])
+      @membership = Membership.find(params[:id])
     end
 
     def membership_params
-      params.require(:membership).permit(:role)
+      params.require(:membership).permit(:role, :troop_id, :user_id, :current)
     end
 end
