@@ -1,12 +1,13 @@
 class Admin::MembershipsController < Admin::AdminController
   before_action :load_source, except: [:show, :destroy]
-  before_action :load_membership, only: [:show, :destroy]
 
   def index
     @memberships = @source.memberships.all_details.order(:current, :role)
   end
 
-  def show; end
+  def show
+    @membership = Membership.includes(:user, :troop).find(params[:id])
+  end
 
   def new
     @membership = @source.memberships.new
@@ -26,6 +27,7 @@ class Admin::MembershipsController < Admin::AdminController
   end
 
   def destroy
+    @membership = Membership.find(params[:id])
     @membership.destroy
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.remove(@membership) }
@@ -53,10 +55,6 @@ class Admin::MembershipsController < Admin::AdminController
 
     def load_user
       @user = User.find_by_id(params[:user_id])
-    end
-
-    def load_membership
-      @membership = Membership.find(params[:id])
     end
 
     def membership_params

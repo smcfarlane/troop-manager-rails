@@ -1,0 +1,18 @@
+.flex.flex-col.gap-4
+  .flex.justify-between.items-end.pb-4
+    %h1.text-2xl Membership
+    %div
+      = link_to "Back", :back, class: "btn btn-default mb-2"
+
+  .flex.flex-wrap.items-start.gap-2.text-lg
+    %span User
+    = link_to admin_user_path(@membership.user), class: "flex flex-col text-emerald-600" do
+      %span= @membership.user.name
+      %span.text-sm (#{@membership.user.email})
+    %span is a member of
+    = link_to admin_troop_path(@membership.troop), class: "flex flex-col text-amber-600" do
+      %span= @membership.troop.name
+      #span.text-sm ##{@membership.troop.number}
+    %span as a
+    %span.text-green-500 #{@membership.role.humanize.titlecase}
+

@@ -1,6 +1,9 @@
 - membership_counter = local_assigns[:membership_counter].presence || 0
 .flex.justify-between.border-b.border-gray-300.p-4{ id: dom_id(membership), class: membership_counter == 0 ? "border-t" : "" }
-  = link_to admin_membership_path(membership), class: "flex justify-start items-end gap-2 hover:text-emerald-500" do
+  = link_to admin_membership_path(membership),
+    class: "flex justify-start items-end gap-2 hover:text-emerald-500",
+    'data-turbo-frame': 'admin',
+    'data-turbo-action': 'advance' do
     - if source_type == "User"
       %p.text-xl.m-0= membership.troop_name
       %p.text-sm{ class: "pb-0.5" } ##{membership.troop_number}
