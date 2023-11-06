@@ -1,0 +1,7 @@
+= turbo_frame_tag "events", class: "col-span-2" do
+  .flex.flex-col.gap-4
+    .flex.justify-between
+      %p.text-xl.font-semibold Events
+      = link_to "New Event", new_troop_event_path(@troop), class: "btn btn-new"
+    .flex.flex-col.gap-4
+      = render partial: "event", collection: @events

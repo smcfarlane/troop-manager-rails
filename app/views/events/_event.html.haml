@@ -1,0 +1,10 @@
+- event_counter = local_assigns[:event_counter].presence || 0
+.flex.justify-between.border-b.border-stone-200.p-4{ id: dom_id(event), class: event_counter == 0 ? "border-t" : "" }
+  = link_to troop_event_path(event.troop, event), class: 'text-md' do
+    %span= event.name.humanize.titleize
+  .flex.gap-2.text-md.text-amber-600
+    %span= event.starts_at.strftime("%b %d")
+    %span
+      = event.starts_at.strftime('%I:%M %p')
+      = " - "
+      = event.ends_at.strftime('%I:%M %p')

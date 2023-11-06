@@ -1,1 +1,18 @@
-%p.text-3xl Current Troop
+.flex.flex-col.gap-4
+  %p
+    %span.text-3xl= current_troop.name.humanize.titleize
+    %spam.text-xl ##{current_troop.number}
+
+  .grid.grid-cols-3.gap-8
+    = turbo_frame_tag "events", src: troop_events_path(current_troop), class: "col-span-2"
+    .flex.flex-col.gap-4.border-l-2.border-stone-200.pl-2
+      %p.text-xl.font-semibold Troop Details
+      %div
+        %p.text-lg Leaders
+        %ul.list-disclosure-closed.list-inside.pl-4
+          - current_troop.users.leaders.each do |leader|
+            %li.text-md.font-normal.text-emerald-600= leader.name
+
+
+
+

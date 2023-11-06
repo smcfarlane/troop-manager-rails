@@ -13,6 +13,14 @@ module.exports = {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
     },
+    listStyleType: {
+      none: 'none',
+      disc: 'disc',
+      decimal: 'decimal',
+      square: 'square',
+      roman: 'upper-roman',
+      'disclosure-closed': 'disclosure-closed',
+    }
   },
   plugins: [
     require('@tailwindcss/forms'),

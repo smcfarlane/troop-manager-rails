@@ -19,4 +19,9 @@
               .alert.alert-success{:role => "alert"}= flash['notice']
             - if flash['error']
               .alert.alert-danger{:role => "alert"}= flash['error']
-        = content_for?(:content) ? yield(:content) : yield
+        - if content_for?(:content)
+          = yield(:content)
+        - else
+          = turbo_frame_tag 'main' do
+            = yield
+
