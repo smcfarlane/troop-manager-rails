@@ -16,3 +16,6 @@
           = @event.starts_at.strftime('%I:%M %p')
           = " - "
           = @event.ends_at.strftime('%I:%M %p')
+
+    = turbo_frame_tag 'event_messages', class: "flex-grow overflow-y-auto" do
+      = render partial: 'messages/index', locals: { event: @event }

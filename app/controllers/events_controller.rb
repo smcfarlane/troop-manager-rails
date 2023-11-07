@@ -6,7 +6,9 @@ class EventsController < ApplicationController
     @events = @troop.events.where('ends_at > ?', Time.current).order(starts_at: :desc)
   end
 
-  def show; end
+  def show
+    redirect_to current_troop_with_event_path(event_id: @event.id) unless turbo_frame_request?
+  end
 
   def new
     @event = @troop.events.new

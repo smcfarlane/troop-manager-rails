@@ -1,0 +1,11 @@
+.flex.flex-col.bg-stone-600.p-2.rounded-md{ id: dom_id(message), class: message.user == current_user ? 'w-11/12' : 'w-11/12 self-end' }
+  %div= message.message
+  .flex.justify-between
+    .text-sm.text-amber-400
+      - if message.created_at.today?
+        = message.created_at.strftime("%I:%M %p")
+      - else
+        = message.created_at.strftime("%b %d, %Y %I:%M %p")
+    .text-sm.text-amber-400
+      = message.user.name
+

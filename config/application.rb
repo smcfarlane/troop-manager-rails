@@ -24,5 +24,7 @@ module TroopManager
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
     config.action_view.field_error_proc = Proc.new { |html_tag, _| html_tag }
+
+    config.time_zone = 'Mountain Time (US & Canada)'
   end
 end

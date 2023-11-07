@@ -1,0 +1,18 @@
+.flex.flex-col.border-2.border-stone-500.rounded-md
+  .px-4.py-2.bg-stone-500
+    %p.text-lg.text-amber-300.font-bold Messages
+
+  .flex.flex-col.gap-2.p-4#messages
+    - if event.messages.any?
+      = render event.messages
+    - else
+      .flex.flex-col.items-center.justify-center.h-16#no-messages
+        %p.text-amber-300 No messages yet
+
+  - new_message = event.messages.build
+  = form_for [event.troop, event, new_message], html: { class: 'flex justify-between gap-4 p-4 border-t-2 border-stone-500' } do |f|
+    .relative.flex-grow
+      = f.text_area :message, placeholder: "Message", rows: 2, class: "basic-input peer"
+      = f.label :message, 'New Message', class: "basic-label scale-90 peer-placeholder-shown:scale-100 peer-focus:scale-90"
+    .flex.justify-center.items-center
+      = f.submit "Send", class: "btn btn-primary"

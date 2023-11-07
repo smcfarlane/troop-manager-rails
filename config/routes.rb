@@ -6,9 +6,12 @@ Rails.application.routes.draw do
 
   root 'home#index'
   get 'current_troop', to: 'troops#current', as: :current_troop
+  get 'current_troop/event/:event_id', to: 'troops#current', as: :current_troop_with_event
   get 'not_a_member', to: 'troops#not_a_member', as: :not_a_member
   resources :troops, only: [] do
-    resources :events
+    resources :events do
+      resources :messages, only: [:index, :create, :destroy]
+    end
   end
 
   namespace :admin do
