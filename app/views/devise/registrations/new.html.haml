@@ -1,7 +1,10 @@
 .flex.justify-center
   .flex.flex-col.gap-8(class="w-3/5")
     %p.text-2xl Sign up
-    = form_for resource, as: resource_name, url: registration_path(resource_name), html: { class: 'flex flex-col gap-6' } do |f|
+    = form_for resource,
+      as: resource_name,
+      url: registration_path(resource_name),
+      html: { class: 'flex flex-col gap-6', 'data-turbo-frame': '_top' } do |f|
       = render "devise/shared/error_messages", resource: resource
 
       .relative

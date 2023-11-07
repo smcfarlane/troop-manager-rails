@@ -1,7 +1,10 @@
 .flex.justify-center
   .flex.flex-col.gap-8(class="w-3/5")
     %p.text-2xl Sign In
-    = form_for resource, as: resource_name, url: session_path(resource_name), html: { class: 'flex flex-col gap-6' } do |f|
+    = form_for resource,
+      as: resource_name,
+      url: session_path(resource_name),
+      html: { class: 'flex flex-col gap-6', 'data-turbo-frame': '_top' } do |f|
       .relative
         = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "email", class: "basic-input peer"
         = f.label :email, 'Email', class: "basic-label scale-90 peer-placeholder-shown:scale-100 peer-focus:scale-90"
